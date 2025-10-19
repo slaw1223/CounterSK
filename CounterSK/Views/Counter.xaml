@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:viewModels="clr-namespace:CounterSK.ViewModels"
+             x:Class="CounterSK.Views.Counter"
+			 x:DataType="viewModels:CounterViewModel"
+             Title="Counter">
+    
+    <ContentPage.BindingContext>
+        <viewModels:CounterViewModel/>
+    </ContentPage.BindingContext>
+    
+    <VerticalStackLayout Padding="20" Spacing="20">
+        <Label
+            Text="Licznik"
+            FontSize="32"
+            HorizontalOptions="Center"/>
+        <Label 
+            Text="{Binding Value}"
+            FontSize="48"
+            HorizontalOptions="Center"/>
+
+        <Grid ColumnDefinitions="*,*" ColumnSpacing="4">
+            <Button Grid.Column ="0" Text="-" Command="{Binding IncrementCommand}"/>
+            <Button Grid.Column ="1" Text="+" Command="{Binding DecrementCommand}"/>
+        </Grid>
+
+    </VerticalStackLayout>
+</ContentPage>
