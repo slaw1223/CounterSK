@@ -25,7 +25,6 @@ namespace CounterSK.Models
         }
         private void RemoveCounter(CounterViewModel counter)
         {
-            if (Counters.Contains(counter))
                 Counters.Remove(counter);
         }
 

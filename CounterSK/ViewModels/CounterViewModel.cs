@@ -19,6 +19,7 @@ namespace CounterSK.ViewModels
         public CounterViewModel(string name = "Licznik", Action<CounterViewModel>? onDelete = null)
         {
             this.name = name;
+            _onDelete = onDelete;
             Value = _counter.Value;
         }
 
