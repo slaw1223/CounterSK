@@ -1,16 +1,41 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CounterSK.Views.MainCounterPage"
-             Title="MainCounterPage">
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:CounterSK.Views"
+    xmlns:models="clr-namespace:CounterSK.Models"
+    x:Class="CounterSK.Views.MainCounterPage"
+    x:DataType="models:MainCounterPageModel"
+    Title="Liczniki">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem
-            Text="Add"
+    <Grid RowDefinitions="Auto, *" Padding="20" RowSpacing="15">
+        <VerticalStackLayout HorizontalOptions="Center" Grid.Row="0">
             
-            />
-    </ContentPage.ToolbarItems>
-    <ScrollView Orientation="Vertical">
-           
-    </ScrollView>
+            <Entry Placeholder="Nazwa licznika"
+                       WidthRequest="200"
+                       Text="{Binding NewCounterName}" />
+            <Button Text="Dodaj licznik"
+                Command="{Binding AddCounterCommand}"
+                 />
+        </VerticalStackLayout>
+
+
+        <CollectionView 
+            Grid.Row="1"
+            ItemsSource="{Binding Counters}"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand">
+
+
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="4" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <views:Counter />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>

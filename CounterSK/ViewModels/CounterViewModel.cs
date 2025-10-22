@@ -1,36 +1,47 @@
-﻿using System;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CounterSK.Models;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CounterSK.ViewModels
 {
-   public partial class CounterViewModel : ObservableObject
+    public partial class CounterViewModel : ObservableObject
     {
-        private CounterModel _counterModel;
-        public CounterViewModel()
-        {
-            _counterModel = new CounterModel();
-            _value = _counterModel.Value;
-        }
+        private readonly CounterModel _counter = new();
+        private readonly Action<CounterViewModel>? _onDelete;
+
         [ObservableProperty]
-        private int _value;
+        private string name;
+
+        [ObservableProperty]
+        private int value;
+
+        public CounterViewModel(string name = "Licznik", Action<CounterViewModel>? onDelete = null)
+        {
+            this.name = name;
+            Value = _counter.Value;
+        }
 
         [RelayCommand]
         private async Task IncrementAsync()
         {
-            _counterModel.Increment();
-            _value = _counterModel.Value;
+            await Task.Delay(20);
+            _counter.Increment();
+            Value = _counter.Value;
         }
+
         [RelayCommand]
         private async Task DecrementAsync()
         {
-            _counterModel.Decrement();
-            _value = _counterModel.Value;
+            await Task.Delay(20);
+            _counter.Decrement();
+            Value = _counter.Value;
+        }
+        [RelayCommand]
+        private async Task DeleteAsync()
+        {
+            await Task.Delay(20);
+            _onDelete?.Invoke(this);
         }
     }
 }

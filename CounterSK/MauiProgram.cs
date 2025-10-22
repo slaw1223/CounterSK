@@ -1,4 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+using CounterSK.Models;
+using CounterSK.ViewModels;
+using CounterSK.Views;
 
 namespace CounterSK
 {
@@ -14,9 +17,11 @@ namespace CounterSK
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-
+            builder.Services.AddSingleton<MainCounterPageModel>();
+            builder.Services.AddTransient<CounterViewModel>();
+            builder.Services.AddSingleton<MainCounterPage>();
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

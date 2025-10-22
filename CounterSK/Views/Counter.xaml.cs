@@ -1,6 +1,6 @@
 namespace CounterSK.Views;
 
-public partial class Counter : ContentPage
+public partial class Counter : ContentView
 {
 	public Counter()
 	{

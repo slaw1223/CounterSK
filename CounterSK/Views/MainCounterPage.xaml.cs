@@ -1,9 +1,13 @@
-namespace CounterSK.Views;
+using CounterSK.Models;
 
-public partial class MainCounterPage : ContentPage
+namespace CounterSK.Views
 {
-	public MainCounterPage()
-	{
-		InitializeComponent();
-	}
+    public partial class MainCounterPage : ContentPage
+    {
+        public MainCounterPage(MainCounterPageModel viewModel)
+        {
+            InitializeComponent();
+            BindingContext = viewModel;
+        }
+    }
 }
