@@ -10,13 +10,14 @@
         <VerticalStackLayout Spacing="8" HorizontalOptions="Center" >
             <Grid ColumnDefinitions="Auto, *" ColumnSpacing="20">
                 <Label Text="{Binding Name}" FontSize="20" HorizontalOptions="Center" Grid.Column="0"/>
-                <Button Text="X" Command="{Binding DeleteCommand}" Grid.Column="1" TextColor="Red" Background="Transparent"/>
+                <Button Text="X" Command="{Binding DeleteCounterCommand}" Grid.Column="1" TextColor="Red" Background="Transparent"/>
             </Grid>
             <Label Text="{Binding Value}" FontSize="32" HorizontalOptions="Center" />
             <HorizontalStackLayout Spacing="10">
                 <Button Text="–" Command="{Binding DecrementCommand}" />
                 <Button Text="+" Command="{Binding IncrementCommand}" />
             </HorizontalStackLayout>
+            <Button Text="Resetuj" Command="{Binding ResetCommand}" />
         </VerticalStackLayout>
     </Frame>
 </ContentView>

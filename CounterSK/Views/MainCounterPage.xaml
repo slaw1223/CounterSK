@@ -10,10 +10,16 @@
 
     <Grid RowDefinitions="Auto, *" Padding="20" RowSpacing="15">
         <VerticalStackLayout HorizontalOptions="Center" Grid.Row="0">
-            
             <Entry Placeholder="Nazwa licznika"
                        WidthRequest="200"
                        Text="{Binding NewCounterName}" />
+            <Entry Placeholder="Podstawowa wartość"
+                   WidthRequest="200"
+                   Keyboard="Numeric"
+                   Text="{Binding NewCounterInitialValue}"/>
+            
+            
+
             <Button Text="Dodaj licznik"
                 Command="{Binding AddCounterCommand}"
                  />

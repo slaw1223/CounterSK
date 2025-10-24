@@ -17,9 +17,10 @@ namespace CounterSK
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-            builder.Services.AddSingleton<MainCounterPageModel>();
-            builder.Services.AddTransient<CounterViewModel>();
-            builder.Services.AddSingleton<MainCounterPage>();
+
+            builder.Services.AddTransient<MainCounterPageModel>();
+            builder.Services.AddTransient<MainCounterPage>();
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
