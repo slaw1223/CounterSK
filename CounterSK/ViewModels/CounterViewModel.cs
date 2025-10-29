@@ -9,8 +9,8 @@ namespace CounterSK.ViewModels
     public partial class CounterViewModel : ObservableObject
     {
         private readonly CounterModel _counter = new();
-        private readonly Action<CounterViewModel>? _onDelete;
-        private readonly Func<Task>? _onSave;
+        private readonly Action<CounterViewModel> _onDelete;
+        private readonly Func<Task> _onSave;
 
         [ObservableProperty]
         private string name;
@@ -22,7 +22,7 @@ namespace CounterSK.ViewModels
         private int initialValue;
 
         public CounterViewModel(string name = "Licznik",
-                                Action<CounterViewModel>? onDelete = null,
+                                Action<CounterViewModel> onDelete = null,
                                 int initialValue = 0,
                                 Func<Task>? onSave = null,
                                 int? loadedValue = null)
@@ -37,30 +37,30 @@ namespace CounterSK.ViewModels
         }
 
         [RelayCommand]
-        private async Task Increment()
+        private void Increment()
         {
             _counter.Increment();
             Value = _counter.Value;
-            if (_onSave != null) await _onSave();
+            _onSave();
         }
 
         [RelayCommand]
-        private async Task Decrement()
+        private void Decrement()
         {
             _counter.Decrement();
             Value = _counter.Value;
-            if (_onSave != null) await _onSave();
+            _onSave();
         }
 
         [RelayCommand]
-        private void DeleteCounter() => _onDelete?.Invoke(this);
+        private void DeleteCounter() => _onDelete.Invoke(this);
 
         [RelayCommand]
-        private async Task Reset()
+        private void Reset()
         {
             _counter.Value = InitialValue;
             Value = InitialValue;
-            if (_onSave != null) await _onSave();
+            _onSave();
         }
     }
 }
